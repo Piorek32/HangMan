@@ -19,8 +19,9 @@ export class AppComponent implements OnInit {
     private elementRef: ElementRef) {
   }
   words = words;
-  title = 'handman';
+  title = 'Hand-man Game';
   randomWords = "";
+  missedLetter:string = "";
   b = 0;
   spans = this.elementRef.nativeElement.getElementsByTagName('span');
   hangmanBox = this.elementRef.nativeElement.getElementsByClassName('man');
@@ -39,8 +40,8 @@ export class AppComponent implements OnInit {
 
       });
     } else {
-      console.log(this.hangmanBox.length);
       if (this.b < this.hangmanBox.length) {
+        this.missedLetter += keyPress;
         this.hangmanBox[this.b].classList.add("show");
         this.b += 1;
       } else {
