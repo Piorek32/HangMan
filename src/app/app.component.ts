@@ -21,38 +21,43 @@ export class AppComponent implements OnInit {
   words = words;
   title = 'Hand-man Game';
   randomWords = "";
-  missedLetter:string = "";
+  missedLetter: string = "";
   b = 0;
   spans = this.elementRef.nativeElement.getElementsByTagName('span');
   hangmanBox = this.elementRef.nativeElement.getElementsByClassName('man');
 
   onKeyUp(event: KeyboardEvent) {
-    let keyPress = event.key;
-    let arr = this.randomWords.split("");
-    let q = arr.includes(keyPress);
-    if (q) {
-      arr.forEach(ele => {
-        for (let i of this.spans) {
-          if (i.innerText === keyPress.toUpperCase()) {
-            i.style.fontSize = "46px";
-          }
-        };
 
-      });
-    } else {
-      if (this.b < this.hangmanBox.length) {
-        this.missedLetter += keyPress;
-        this.hangmanBox[this.b].classList.add("show");
-        this.b += 1;
+    if (event.keyCode <= 90 && event.keyCode >= 48) {
+      let keyPress = event.key;
+      let arr = this.randomWords.split("");
+      let q = arr.includes(keyPress);
+      if (q) {
+        arr.forEach(ele => {
+          for (let i of this.spans) {
+            if (i.innerText === keyPress.toUpperCase()) {
+              i.style.fontSize = "46px";
+              i.style.background = "antiquewhite";
+              i.style.color = "white";
+
+            }
+          };
+
+        });
       } else {
-        
-        console.log("koniec gry");
-        return 
+        if (this.b < this.hangmanBox.length) {
+          this.missedLetter += keyPress;
+          this.hangmanBox[this.b].classList.add("show");
+          this.b += 1;
+        } else {
+
+          console.log("koniec gry");
+          return;
+        }
       }
     }
   }
   handmanSpans = (str) => {
-    debugger 
     let array = str.split("");
     return `
          ${array.map((q) => `<span style=" font-size: 0px; height:50px; width:50px; text-align: center;
@@ -62,7 +67,7 @@ border: 5px solid black;margin: 0 10px;    text-transform: uppercase;
   }
 
   generateSpans() {
-    let ctx = Math.floor((Math.random() * this.words.length) + 1);
+    let ctx = Math.floor((Math.random() * this.words.length - 1) + 1);
     this.randomWords = this.words[ctx];
     var handmanString = `
       ${this.handmanSpans(this.randomWords)}

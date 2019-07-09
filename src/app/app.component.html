@@ -3,16 +3,15 @@
   <div style="text-align:center">
     <h1>
       Welcome to {{ title }}!
-
     </h1>
-    {{missedLetter}}
+    <span class="missedLetter">Missed letter  {{missedLetter | uppercase}}</span> 
   </div>
 
 <div class="container">
   <div class="hangmanBox">
     <div class="wood man"></div>
     <div class="rope man"></div>
-    <div class="head"></div>
+    <div class="head man"></div>
     <div class="torso man"></div>
     <div class="leftHand man"></div>
     <div class="rightHand man"></div>

@@ -1,8 +1,15 @@
+body {
+  background-color: powderblue;
+}
+
 .container {
   display: flex;
   flex-direction: column;
 }
-
+.missedLetter {
+  font-weight: bold;
+  font-size: 2em;
+}
 
 .wood {
   position: relative;
@@ -11,7 +18,7 @@
   background-color: brown;
   display: block;
   opacity: 0;
-  }
+}
 .rope {
   position: relative;
   width: 10px;
@@ -88,10 +95,12 @@
 
 
 .add {
+  background-color:antiquewhite;
   font-size: 46px
 }
 
 .show {
+  
   opacity: 1;
 }
 .wordContainer {
@@ -103,15 +112,11 @@
   left: 0px;
   right: 0px;
 }
-.wordContainer span {
-  width: 100px;
-  height: 100px;
-  display: block;
+
+
+
+@media only screen and (max-width: 600px) {
+  body {
+   
+  }
 }
-
-
-.wordContainer span::after {
-
-}
-
-
