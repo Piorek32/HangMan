@@ -6,6 +6,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .missedLetter {
   font-weight: bold;
   font-size: 2em;
@@ -19,6 +20,7 @@ body {
   display: block;
   opacity: 0;
 }
+
 .rope {
   position: relative;
   width: 10px;
@@ -27,6 +29,7 @@ body {
   opacity: 0;
   left: 170px;
 }
+
 .head {
   opacity: 0;
   width: 50px;
@@ -46,6 +49,7 @@ body {
   position: relative;
   left: 170px;
 }
+
 .leftHand {
   opacity: 0;
   width: 5px;
@@ -56,6 +60,7 @@ body {
   top: -105px;
   transform: rotate(45deg);
 }
+
 .rightHand {
   opacity: 0;
   width: 5px;
@@ -67,6 +72,7 @@ body {
   -webkit-transform: rotate(45deg);
   transform: rotate(135deg);
 }
+
 .leftLeg {
   opacity: 0;
   width: 5px;
@@ -95,16 +101,15 @@ body {
 
 
 .add {
-  background-color:antiquewhite;
+  background-color: antiquewhite;
   font-size: 46px
 }
 
 .show {
-  
   opacity: 1;
 }
+
 .wordContainer {
-  
   display: flex;
   justify-content: center;
   position: absolute;
@@ -113,10 +118,36 @@ body {
   right: 0px;
 }
 
+.endGameOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 
+  .endGame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 200px;
+    background-color: azure;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
 
 @media only screen and (max-width: 600px) {
   body {
-   
   }
 }

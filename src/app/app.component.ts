@@ -19,15 +19,17 @@ export class AppComponent implements OnInit {
     private elementRef: ElementRef) {
   }
   words = words;
-  title = 'Hand-man Game';
-  randomWords = "";
+  title:string = 'Hand-man Game';
+  randomWords:string = "";
   missedLetter: string = "";
-  b = 0;
+  noHit:number = 0;
+  endGame: boolean = false;
+  isWin: boolean = false;
+
   spans = this.elementRef.nativeElement.getElementsByTagName('span');
   hangmanBox = this.elementRef.nativeElement.getElementsByClassName('man');
 
   onKeyUp(event: KeyboardEvent) {
-
     if (event.keyCode <= 90 && event.keyCode >= 48) {
       let keyPress = event.key;
       let arr = this.randomWords.split("");
@@ -45,13 +47,13 @@ export class AppComponent implements OnInit {
 
         });
       } else {
-        if (this.b < this.hangmanBox.length) {
+        if (this.noHit < this.hangmanBox.length) {
           this.missedLetter += keyPress;
-          this.hangmanBox[this.b].classList.add("show");
-          this.b += 1;
-        } else {
-
-          console.log("koniec gry");
+          this.hangmanBox[this.noHit].classList.add("show");
+          this.noHit += 1;
+        }
+        if (this.noHit === this.hangmanBox.length) {
+          this.endGame = true;
           return;
         }
       }
@@ -70,8 +72,7 @@ border: 5px solid black;margin: 0 10px;    text-transform: uppercase;
     let ctx = Math.floor((Math.random() * this.words.length - 1) + 1);
     this.randomWords = this.words[ctx];
     var handmanString = `
-      ${this.handmanSpans(this.randomWords)}
-`;
+      ${this.handmanSpans(this.randomWords)}`;
     this.wordCtn.nativeElement.innerHTML = handmanString;
   }
 

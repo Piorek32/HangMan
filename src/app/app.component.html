@@ -4,7 +4,8 @@
     <h1>
       Welcome to {{ title }}!
     </h1>
-    <span class="missedLetter">Missed letter  {{missedLetter | uppercase}}</span> 
+    <h2>Missed letter:{{missedLetter | uppercase}}</h2>
+   
   </div>
 
 <div class="container">
@@ -20,9 +21,14 @@
 
   </div>
   
-    <div #wordCtn class="wordContainer"></div>
+  <div #wordCtn class="wordContainer"></div>
   
 
-
-</div> 
-  </body>
+  
+</div>
+<div class="endGameOverlay">      
+<div *ngIf="endGame"class="endGame">
+  end game
+</div>
+</div>
+</body>
