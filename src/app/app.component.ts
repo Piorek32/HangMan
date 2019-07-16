@@ -70,9 +70,9 @@ border: 5px solid black;margin: 0 10px;    text-transform: uppercase;
          `;
   }
 
-  generateSpans() {
+  generateSpans(word) {
     let ctx = Math.floor((Math.random() * this.words.length - 1) + 1);
-    this.randomWords = this.words[ctx];
+    this.randomWords = word;
     var handmanString = `
       ${this.handmanSpans(this.randomWords)}`;
     this.wordCtn.nativeElement.innerHTML = handmanString;
@@ -80,13 +80,21 @@ border: 5px solid black;margin: 0 10px;    text-transform: uppercase;
 
 
   getWord() {
-    this.apiHttp.getWord().subscribe((w) => console.log(w))
+    this.apiHttp.getWord().subscribe(
+      (word) => {
+        this.randomWords = word.word;
+        debugger 
+        this.generateSpans(this.randomWords);
+
+      },
+      (err) => console.log(err),
+      () => console.log("compled"));
   }
 
 
   ngOnInit() {
     this.getWord();
-    this.generateSpans();
+    
   }
 
 

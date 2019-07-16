@@ -12,7 +12,7 @@ export class ApiHttp {
   }
   apiKey = "4bvl4povqkrbof9gqo4anse62zxt5fupwo68fftu60e9vfkbx";
   getWord() {
-    return this.http.get(`http://api.wordnik.com/v4/words.json/randomWord?api_key=${this.apiKey}`);
+    return this.http.get(`http://api.wordnik.com/v4/words.json/randomWord?api_key5=${this.apiKey}`);
   }
 
 
