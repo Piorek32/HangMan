@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ApiHttp } from "./services/api.http";
 import { words } from "./randomWord"
 
 @Component({
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
   @ViewChild('wordCtn') wordCtn: ElementRef;
 
   constructor(
+    private  apiHttp: ApiHttp,
     private elementRef: ElementRef) {
   }
   words = words;
@@ -77,7 +79,13 @@ border: 5px solid black;margin: 0 10px;    text-transform: uppercase;
   }
 
 
+  getWord() {
+    this.apiHttp.getWord().subscribe((w) => console.log(w))
+  }
+
+
   ngOnInit() {
+    this.getWord();
     this.generateSpans();
   }
 
