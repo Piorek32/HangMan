@@ -3,6 +3,8 @@
 
 Project made using angular fremowork.
 
+the app communicates  the API (wordnik) to retrieve a random word
+
 Technologies JS, TS, SASS
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
