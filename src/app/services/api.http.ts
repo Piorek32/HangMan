@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { RandomWord } from "../shared/models/models"
 
 import { Injectable } from '@angular/core';
 
@@ -11,8 +12,8 @@ export class ApiHttp {
   ) {
   }
   apiKey = "4bvl4povqkrbof9gqo4anse62zxt5fupwo68fftu60e9vfkbx";
-  getWord() {
-    return this.http.get(`http://api.wordnik.com/v4/words.json/randomWord?api_key5=${this.apiKey}`);
+  getWord() : Observable<RandomWord> {
+    return this.http.get(`http://api.wordnik.com/v4/words.json/randomWord?api_key=${this.apiKey}`);
   }
 
 

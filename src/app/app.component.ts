@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiHttp } from "./services/api.http";
-import { words } from "./randomWord"
+import { RandomWord} from "./shared/models/models"
+
 
 @Component({
 
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
     private  apiHttp: ApiHttp,
     private elementRef: ElementRef) {
   }
-  words = words;
+ 
   title:string = 'Hand-man Game';
   randomWords:string = "";
   missedLetter: string = "";
@@ -71,7 +72,7 @@ border: 5px solid black;margin: 0 10px;    text-transform: uppercase;
   }
 
   generateSpans(word) {
-    let ctx = Math.floor((Math.random() * this.words.length - 1) + 1);
+    
     this.randomWords = word;
     var handmanString = `
       ${this.handmanSpans(this.randomWords)}`;
@@ -82,10 +83,15 @@ border: 5px solid black;margin: 0 10px;    text-transform: uppercase;
   getWord() {
     this.apiHttp.getWord().subscribe(
       (word) => {
-        this.randomWords = word.word;
-        debugger 
-        this.generateSpans(this.randomWords);
+        const reg = new RegExp("[A - Za - z]");
 
+        if (reg.test(word.word)) {
+          this.randomWords = word.word;
+          this.generateSpans(this.randomWords);
+        } else {
+          debugger 
+          this.getWord();
+        }
       },
       (err) => console.log(err),
       () => console.log("compled"));

@@ -4,8 +4,10 @@ import { ApiHttp } from "./services/api.http";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { Injectable } from '@angular/core';
-import { ErrorInterceptor } from  "./interceptors/error.interceptor"
-@NgModule({
+import { ErrorInterceptor } from "./interceptors/error.interceptor"
+import { TimeoutInterceptor } from "./interceptors/timeout.interceptor"
+@
+NgModule({
   declarations: [
     AppComponent
   ],
@@ -18,6 +20,12 @@ import { ErrorInterceptor } from  "./interceptors/error.interceptor"
       provide:
         HTTP_INTERCEPTORS, useClass:
         ErrorInterceptor, multi:
+        true
+    },
+    {
+      provide:
+        HTTP_INTERCEPTORS, useClass:
+        TimeoutInterceptor, multi:
         true
     },
     ApiHttp
