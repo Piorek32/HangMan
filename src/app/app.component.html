@@ -24,10 +24,16 @@
   <div #wordCtn class="wordContainer"></div>
   
 
-services</div>
+</div>
 <div class="endGameOverlay">      
-<div *ngIf="endGame"class="endGame">
-  end game
+<div *ngIf="endGame"class="endGame" (click)="restartGame()" >
+  end game<br>
+  try again
+</div>
+<div *ngIf="error"class="error" (click)="restartGame()" >
+  
+ups something went wrong ...<br> try again<br>
+
 </div>
 </div>
 </body>

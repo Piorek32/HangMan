@@ -28,11 +28,14 @@ export class AppComponent implements OnInit {
   noHit:number = 0;
   endGame: boolean = false;
   isWin: boolean = false;
+  error: boolean = false;
+  
 
   spans = this.elementRef.nativeElement.getElementsByTagName('span');
   hangmanBox = this.elementRef.nativeElement.getElementsByClassName('man');
 
   onKeyUp(event: KeyboardEvent) {
+    if (!this.endGame) {
     if (event.keyCode <= 90 && event.keyCode >= 48) {
       let keyPress = event.key;
       let arr = this.randomWords.split("");
@@ -43,11 +46,9 @@ export class AppComponent implements OnInit {
             if (i.innerText === keyPress.toUpperCase()) {
               i.style.fontSize = "46px";
               i.style.background = "antiquewhite";
-              i.style.color = "white";
-
+              i.style.color = "black";
             }
           };
-
         });
       } else {
         if (this.noHit < this.hangmanBox.length) {
@@ -62,6 +63,7 @@ export class AppComponent implements OnInit {
       }
     }
   }
+  }
   handmanSpans = (str) => {
     let array = str.split("");
     return `
@@ -72,29 +74,46 @@ border: 5px solid black;margin: 0 10px;    text-transform: uppercase;
   }
 
   generateSpans(word) {
-    
     this.randomWords = word;
     var handmanString = `
       ${this.handmanSpans(this.randomWords)}`;
     this.wordCtn.nativeElement.innerHTML = handmanString;
+
   }
+
+  removeElementsOfGame() {
+    this.missedLetter = "";
+    for ( let i of this.hangmanBox ) {
+      i.classList.remove("show")
+    }
+  }
+
 
 
   getWord() {
     this.apiHttp.getWord().subscribe(
       (word) => {
         const reg = new RegExp("[A - Za - z]");
-
         if (reg.test(word.word)) {
           this.randomWords = word.word;
           this.generateSpans(this.randomWords);
+          
         } else {
-          debugger 
           this.getWord();
         }
       },
-      (err) => console.log(err),
+      (err) => {
+        this.error = true;
+        console.log(err)},
       () => console.log("compled"));
+  }
+
+  restartGame() {
+    this.getWord()
+    this.removeElementsOfGame();
+    this.endGame = false;
+    this.error = false;
+    this.noHit = 0;
   }
 
 
