@@ -67,8 +67,8 @@ export class AppComponent implements OnInit {
   handmanSpans = (str) => {
     let array = str.split("");
     return `
-         ${array.map((q) => `<span style=" font-size: 0px; height:50px; width:50px; text-align: center;
-border: 5px solid black;margin: 0 10px;    text-transform: uppercase;
+         ${array.map((q) => `<span style=" flex-basic: 200px;font-size: 0px; height:50px; width:50px; text-align: center;
+border: 5px solid black;margin:  10px;    text-transform: uppercase;
 ">${q}</span >`).join("")}
          `;
   }

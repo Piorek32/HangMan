@@ -39,12 +39,12 @@ body {
   left: 170px;
 }
 
-.head {
+div.head {
   opacity: 0;
   width: 50px;
   height: 50px;
   border: 5px solid black;
-  border-radius: 50%;
+  border-radius: 50% !important;
   position: relative;
   left: 145px;
 }
@@ -114,17 +114,18 @@ body {
   font-size: 46px
 }
 
-.show {
+div.show {
   opacity: 1;
 }
 
 .wordContainer {
   display: flex;
   justify-content: center;
-  position: absolute;
+ // position: absolute;
   bottom: 100px;
   left: 0px;
   right: 0px;
+  flex-wrap: wrap;
 }
 
 .endGameOverlay {
